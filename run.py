@@ -9,7 +9,7 @@ def main() -> None:
     args = sys.argv[2:]
     sys.argv = [*sys.argv[0:1], *sys.argv[2:]]
 
-    runpy._run_module_as_main(f"gptsearch.{modname}", alter_argv=False)
+    runpy._run_module_as_main(f"{modname}", alter_argv=False)
 
 if __name__ == "__main__":
     main()
