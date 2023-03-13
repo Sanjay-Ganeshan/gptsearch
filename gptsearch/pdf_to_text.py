@@ -18,6 +18,7 @@ def convert_library(pdf_library: Path, txt_library: Path) -> None:
     assert not txt_library.exists() or txt_library.is_dir()
     for each_pdf in pdf_library.glob("**/*.pdf"):
         output = txt_library / each_pdf.relative_to(pdf_library)
+        output = output.parent / output.name.replace(".pdf", ".txt")
         output.parent.mkdir(mode=0b111_101_101, parents=True, exist_ok=True)
         pdf_to_text(each_pdf, output)
 
