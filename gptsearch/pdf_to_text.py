@@ -24,8 +24,8 @@ def convert_library(pdf_library: Path, txt_library: Path) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("library", type=Path)
-    parser.add_argument("-o", "--output", type=lambda s: str(Path(s).resolve()), default=None)
+    parser.add_argument("library", type=lambda s: Path(s).expanduser().resolve())
+    parser.add_argument("-o", "--output", type=lambda s: Path(s).expanduser().resolve(), default=None)
     args = parser.parse_args()
     to_convert = args.library.resolve(strict=True)
     print(convert_library(to_convert, args.output))
